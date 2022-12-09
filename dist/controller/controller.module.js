@@ -16,7 +16,7 @@ controllerModule = __decorate([
     (0, common_1.Module)({
         imports: [services_module_1.serviceModule],
         controllers: [users_controller_1.UsersController],
-        providers: [services_module_1.serviceModule],
+        providers: [],
     })
 ], controllerModule);
 exports.controllerModule = controllerModule;
