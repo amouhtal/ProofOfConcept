@@ -16,10 +16,12 @@ exports.UsersRepository = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const user_schema_1 = require("./user.schema");
+const picture_model_1 = require("../picture/picture.model");
+const user_model_1 = require("./user.model");
 let UsersRepository = class UsersRepository {
-    constructor(userModel) {
+    constructor(userModel, pictureModel) {
         this.userModel = userModel;
+        this.pictureModel = pictureModel;
     }
     async findOne(userFilterQuery) {
         return this.userModel.findOne(userFilterQuery);
@@ -34,11 +36,24 @@ let UsersRepository = class UsersRepository {
     async findOneAndUpdate(userFilterQuery, user) {
         return this.userModel.findOneAndUpdate(userFilterQuery, user);
     }
+    async addPicture(addPic) {
+        await this.userModel.findByIdAndUpdate(addPic.userId, { $addToSet: { pictures: addPic.pictureId } }, { new: true });
+        return await this.pictureModel.findByIdAndUpdate(addPic.pictureId, { $addToSet: { user: addPic.userId } }, { new: true });
+    }
+    async getPictures(userId) {
+        const picture = await this.userModel.findById(userId).populate('pictures');
+        return picture.pictures;
+    }
+    async removePicture(removePic) {
+        return await this.userModel.findByIdAndUpdate(removePic.userId, { $pull: { pictures: removePic.pictureId } }, { new: true });
+    }
 };
 UsersRepository = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(0, (0, mongoose_1.InjectModel)(user_model_1.User.name)),
+    __param(1, (0, mongoose_1.InjectModel)(picture_model_1.Picture.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        mongoose_2.Model])
 ], UsersRepository);
 exports.UsersRepository = UsersRepository;
 //# sourceMappingURL=user.repository.js.map

@@ -14,26 +14,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const user_dto_1 = require("../../services/gestion-users/user.dto");
-const users_service_1 = require("../../services/gestion-users/users.service");
+const user_dto_1 = require("../../services/users/user.dto");
+const users_service_1 = require("../../services/users/users.service");
 let UsersController = class UsersController {
     constructor(usersSrvice) {
         this.usersSrvice = usersSrvice;
     }
-    async getUser(userId) {
-        return this.usersSrvice.getUserById(userId);
-    }
     async createUser(createUserDto) {
         return this.usersSrvice.createUser(createUserDto.email, createUserDto.age);
     }
+    async addPicture(pic) {
+        return this.usersSrvice.addPicture(pic);
+    }
+    async removePicture(pic) {
+        console.log(pic);
+        return this.usersSrvice.removePicture(pic);
+    }
+    async getPictures(userId) {
+        return this.usersSrvice.getPictures('6393311b7467e8a74d191144');
+    }
+    async getUser(userId) {
+        return this.usersSrvice.getUserById(userId);
+    }
 };
-__decorate([
-    (0, common_1.Get)(':userId'),
-    __param(0, (0, common_1.Param)('userId')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "getUser", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -41,6 +44,34 @@ __decorate([
     __metadata("design:paramtypes", [user_dto_1.userDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createUser", null);
+__decorate([
+    (0, common_1.Post)('addPicture'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_dto_1.addPictureDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "addPicture", null);
+__decorate([
+    (0, common_1.Post)('removePicture'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_dto_1.addPictureDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "removePicture", null);
+__decorate([
+    (0, common_1.Get)('pictures'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getPictures", null);
+__decorate([
+    (0, common_1.Get)(':userId'),
+    __param(0, (0, common_1.Param)('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUser", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

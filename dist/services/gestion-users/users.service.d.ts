@@ -1,5 +1,5 @@
 import { UsersRepository } from "src/data/user/user.repository";
-import { User } from "src/data/user/user.schema";
+import { User } from "src/data/user/user.model";
 export declare class UsersService {
     private readonly usersRepository;
     constructor(usersRepository: UsersRepository);

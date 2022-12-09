@@ -8,28 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PictureRepository = void 0;
-const common_1 = require("@nestjs/common");
+exports.PictureSchema = exports.Picture = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const picture_model_1 = require("./picture.model");
-let PictureRepository = class PictureRepository {
-    constructor(pictureModel) {
-        this.pictureModel = pictureModel;
-    }
-    async create(picture) {
-        const newPicture = new this.pictureModel(picture);
-        return newPicture.save();
-    }
+const user_model_1 = require("../user/user.model");
+let Picture = class Picture {
 };
-PictureRepository = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(picture_model_1.Picture.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
-], PictureRepository);
-exports.PictureRepository = PictureRepository;
-//# sourceMappingURL=picture.repository.js.map
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Picture.prototype, "picId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Picture.prototype, "path", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [mongoose_2.default.Schema.Types.ObjectId], ref: 'User' }),
+    __metadata("design:type", user_model_1.User)
+], Picture.prototype, "user", void 0);
+Picture = __decorate([
+    (0, mongoose_1.Schema)()
+], Picture);
+exports.Picture = Picture;
+exports.PictureSchema = mongoose_1.SchemaFactory.createForClass(Picture);
+//# sourceMappingURL=picture.model.js.map

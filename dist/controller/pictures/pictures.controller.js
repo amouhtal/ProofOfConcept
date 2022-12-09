@@ -12,38 +12,28 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersController = void 0;
+exports.PictureController = void 0;
 const common_1 = require("@nestjs/common");
-const user_dto_1 = require("../../services/gestion-users/user.dto");
-const users_service_1 = require("../../services/gestion-users/users.service");
-let UsersController = class UsersController {
-    constructor(usersSrvice) {
-        this.usersSrvice = usersSrvice;
+const picture_dto_1 = require("../../services/picture/picture.dto");
+const picture_service_1 = require("../../services/picture/picture.service");
+let PictureController = class PictureController {
+    constructor(pictureSercice) {
+        this.pictureSercice = pictureSercice;
     }
-    async getUser(userId) {
-        return this.usersSrvice.getUserById(userId);
-    }
-    async createUser(createUserDto) {
-        return this.usersSrvice.createUser(createUserDto.email, createUserDto.age);
+    async addPicture(createPicture) {
+        return this.pictureSercice.addPicture(createPicture);
     }
 };
-__decorate([
-    (0, common_1.Get)(':userId'),
-    __param(0, (0, common_1.Param)('userId')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "getUser", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_dto_1.userDto]),
+    __metadata("design:paramtypes", [picture_dto_1.PictureDto]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "createUser", null);
-UsersController = __decorate([
-    (0, common_1.Controller)('users'),
-    __metadata("design:paramtypes", [users_service_1.UsersService])
-], UsersController);
-exports.UsersController = UsersController;
-//# sourceMappingURL=users.controller.js.map
+], PictureController.prototype, "addPicture", null);
+PictureController = __decorate([
+    (0, common_1.Controller)('picture'),
+    __metadata("design:paramtypes", [picture_service_1.PictureService])
+], PictureController);
+exports.PictureController = PictureController;
+//# sourceMappingURL=pictures.controller.js.map

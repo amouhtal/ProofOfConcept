@@ -4,3 +4,7 @@ export declare class userDto {
     favoriteFoods: string[];
     picture: string;
 }
+export declare class addPictureDto {
+    userId: string;
+    pictureId: string;
+}

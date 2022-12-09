@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document, Types } from 'mongoose';
-import { Picture } from "../picture/picture.schema";
+import { Picture } from "../picture/picture.model";
 
 export type UserDocument = User & Document;
 
