@@ -9,15 +9,21 @@ import { Picture, PictureDocument } from "./picture.model";
 
 
 @Injectable()
-export class PictureRepository{
+export class PictureRepository {
 
     constructor(@InjectModel(Picture.name) private pictureModel: Model<PictureDocument>){
     }
 
-    async create(picture: PictureDto): Promise<Picture>{
+    async create(picture: PictureDto): Promise<Picture> {
         const newPicture = new this.pictureModel(picture);
         return newPicture.save();
     }
-    
+
+    async deletePicture(pictureId: string) {
+        console.log(pictureId);
+        const filter  = { _id: pictureId };
+
+    const deleted = await this.pictureModel.deleteOne(filter);
+    }
 }
 

@@ -8,9 +8,11 @@ export class UsersController {
     constructor(private readonly usersSrvice: UsersService) {
 
     }
+    @Get()
+    async getUsers(){
+        return this.usersSrvice.getUsers();
 
-  
-    
+    }
     @Post()
     async createUser(@Body() createUserDto: userDto): Promise<User> {
         return this.usersSrvice.createUser(createUserDto.email, createUserDto.age);
@@ -18,21 +20,20 @@ export class UsersController {
     
     @Post('addPicture')
     async addPicture(@Body() pic: addPictureDto){
+        
         return this.usersSrvice.addPicture(pic);
     }
 
     @Post('removePicture')
     async removePicture(@Body() pic: addPictureDto){
-        console.log(pic);
-        
         return this.usersSrvice.removePicture(pic);
     }
 
     @Get('pictures')
-    async getPictures(@Body() userId: string){
-        return this.usersSrvice.getPictures('6393311b7467e8a74d191144');
+    async getPictures(@Body('userId') userId: string){
+        return this.usersSrvice.getPictures(userId);
     }
-    
+
     @Get(':userId')
     async getUser(@Param('userId') userId: string): Promise<User> {
         return this.usersSrvice.getUserById(userId);

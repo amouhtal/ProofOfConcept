@@ -25,6 +25,11 @@ let PictureRepository = class PictureRepository {
         const newPicture = new this.pictureModel(picture);
         return newPicture.save();
     }
+    async deletePicture(pictureId) {
+        console.log(pictureId);
+        const filter = { _id: pictureId };
+        const deleted = await this.pictureModel.deleteOne(filter);
+    }
 };
 PictureRepository = __decorate([
     (0, common_1.Injectable)(),

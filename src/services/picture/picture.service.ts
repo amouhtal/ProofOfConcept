@@ -15,4 +15,8 @@ export class PictureService{
     async addPicture(createPicture: PictureDto){
         return this.pictureRepository.create(createPicture);
     }
+
+    async deletePicture(pictureId: string){
+        return this.pictureRepository.deletePicture(pictureId);
+    }
 }

@@ -37,7 +37,12 @@ let UsersRepository = class UsersRepository {
         return this.userModel.findOneAndUpdate(userFilterQuery, user);
     }
     async addPicture(addPic) {
-        await this.userModel.findByIdAndUpdate(addPic.userId, { $addToSet: { pictures: addPic.pictureId } }, { new: true });
+        try {
+            await this.userModel.findByIdAndUpdate(addPic.userId, { $addToSet: { pictures: addPic.pictureId } }, { new: true });
+            console.log(addPic);
+        }
+        catch (e) {
+        }
         return await this.pictureModel.findByIdAndUpdate(addPic.pictureId, { $addToSet: { user: addPic.userId } }, { new: true });
     }
     async getPictures(userId) {
@@ -46,6 +51,9 @@ let UsersRepository = class UsersRepository {
     }
     async removePicture(removePic) {
         return await this.userModel.findByIdAndUpdate(removePic.userId, { $pull: { pictures: removePic.pictureId } }, { new: true });
+    }
+    async findAll() {
+        return this.userModel.find().exec();
     }
 };
 UsersRepository = __decorate([

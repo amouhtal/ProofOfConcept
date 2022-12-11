@@ -13,9 +13,11 @@ exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const user_repository_1 = require("../../data/user/user.repository");
 const uuid_1 = require("uuid");
+const picture_repository_1 = require("../../data/picture/picture.repository");
 let UsersService = class UsersService {
-    constructor(usersRepository) {
+    constructor(usersRepository, pictureRepository) {
         this.usersRepository = usersRepository;
+        this.pictureRepository = pictureRepository;
     }
     async createUser(email, age) {
         return this.usersRepository.create({
@@ -33,15 +35,20 @@ let UsersService = class UsersService {
         return this.usersRepository.addPicture(addPic);
     }
     async removePicture(removePic) {
+        return this.pictureRepository.deletePicture(removePic.pictureId);
         return this.usersRepository.removePicture(removePic);
     }
     async getPictures(userId) {
         return this.usersRepository.getPictures(userId);
     }
+    async getUsers() {
+        return this.usersRepository.findAll();
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [user_repository_1.UsersRepository])
+    __metadata("design:paramtypes", [user_repository_1.UsersRepository,
+        picture_repository_1.PictureRepository])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map

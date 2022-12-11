@@ -5,4 +5,5 @@ export declare class PictureRepository {
     private pictureModel;
     constructor(pictureModel: Model<PictureDocument>);
     create(picture: PictureDto): Promise<Picture>;
+    deletePicture(pictureId: string): Promise<void>;
 }

@@ -6,7 +6,7 @@ import { Picture, PictureDocument } from "../picture/picture.model";
 import { User, UserDocument } from "./user.model";
 
 @Injectable()
-export class UsersRepository{
+export class UsersRepository {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Picture.name) private pictureModel: Model<PictureDocument>){
     }
@@ -30,11 +30,19 @@ export class UsersRepository{
         }
 
     async addPicture(addPic: addPictureDto){
-         await this.userModel.findByIdAndUpdate(
-            addPic.userId,
-            { $addToSet: { pictures: addPic.pictureId } },
-            { new: true },
-          );
+        try{
+
+            await this.userModel.findByIdAndUpdate(
+                addPic.userId,
+                { $addToSet: { pictures: addPic.pictureId } },
+                { new: true },
+                );
+                console.log(addPic);
+        }
+        catch(e){
+
+        }
+
           return await this.pictureModel.findByIdAndUpdate(
             addPic.pictureId,
             { $addToSet: { user: addPic.userId }},
@@ -54,5 +62,9 @@ export class UsersRepository{
           { $pull: { pictures: removePic.pictureId } },
           { new: true },
         );
+    }
+
+    async findAll(): Promise<User[]>{
+        return this.userModel.find().exec();
     }
 }

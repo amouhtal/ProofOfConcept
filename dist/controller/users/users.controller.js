@@ -20,6 +20,9 @@ let UsersController = class UsersController {
     constructor(usersSrvice) {
         this.usersSrvice = usersSrvice;
     }
+    async getUsers() {
+        return this.usersSrvice.getUsers();
+    }
     async createUser(createUserDto) {
         return this.usersSrvice.createUser(createUserDto.email, createUserDto.age);
     }
@@ -27,16 +30,21 @@ let UsersController = class UsersController {
         return this.usersSrvice.addPicture(pic);
     }
     async removePicture(pic) {
-        console.log(pic);
         return this.usersSrvice.removePicture(pic);
     }
     async getPictures(userId) {
-        return this.usersSrvice.getPictures('6393311b7467e8a74d191144');
+        return this.usersSrvice.getPictures(userId);
     }
     async getUser(userId) {
         return this.usersSrvice.getUserById(userId);
     }
 };
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUsers", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -60,7 +68,7 @@ __decorate([
 ], UsersController.prototype, "removePicture", null);
 __decorate([
     (0, common_1.Get)('pictures'),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)('userId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

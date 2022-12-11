@@ -17,4 +17,5 @@ export declare class UsersRepository {
     removePicture(removePic: addPictureDto): Promise<User & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    findAll(): Promise<User[]>;
 }

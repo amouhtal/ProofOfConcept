@@ -19,6 +19,9 @@ let PictureService = class PictureService {
     async addPicture(createPicture) {
         return this.pictureRepository.create(createPicture);
     }
+    async deletePicture(pictureId) {
+        return this.pictureRepository.deletePicture(pictureId);
+    }
 };
 PictureService = __decorate([
     (0, common_1.Injectable)(),
