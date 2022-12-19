@@ -11,17 +11,13 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const picture_repository_1 = require("./picture/picture.repository");
 const picture_model_1 = require("./picture/picture.model");
-const user_repository_1 = require("./user/user.repository");
-const user_model_1 = require("./user/user.model");
 let DataModule = class DataModule {
 };
 DataModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: user_model_1.User.name,
-                    schema: user_model_1.UserSchema
-                }, { name: picture_model_1.Picture.name, schema: picture_model_1.PictureSchema }])],
-        providers: [user_repository_1.UsersRepository, picture_repository_1.PictureRepository],
-        exports: [user_repository_1.UsersRepository, picture_repository_1.PictureRepository]
+        imports: [mongoose_1.MongooseModule.forFeature([, { name: picture_model_1.Picture.name, schema: picture_model_1.PictureSchema }])],
+        providers: [picture_repository_1.PictureRepository],
+        exports: [picture_repository_1.PictureRepository]
     })
 ], DataModule);
 exports.DataModule = DataModule;

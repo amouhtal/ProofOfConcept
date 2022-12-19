@@ -10,15 +10,15 @@ exports.serviceModule = void 0;
 const common_1 = require("@nestjs/common");
 const data_module_1 = require("../data/data.module");
 const users_service_1 = require("./users/users.service");
-const picture_service_1 = require("./picture/picture.service");
+const pictures_services_module_1 = require("./pictures/pictures.services.module");
 let serviceModule = class serviceModule {
 };
 serviceModule = __decorate([
     (0, common_1.Module)({
-        imports: [data_module_1.DataModule],
+        imports: [data_module_1.DataModule, pictures_services_module_1.PicturesModule],
         controllers: [],
-        providers: [users_service_1.UsersService, picture_service_1.PictureService],
-        exports: [users_service_1.UsersService, picture_service_1.PictureService],
+        providers: [users_service_1.UsersService, PictureService],
+        exports: [users_service_1.UsersService, PictureService],
     })
 ], serviceModule);
 exports.serviceModule = serviceModule;

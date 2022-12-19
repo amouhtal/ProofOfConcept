@@ -12,11 +12,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PictureController = void 0;
+exports.PicturesController = void 0;
 const common_1 = require("@nestjs/common");
 const picture_dto_1 = require("../../services/picture/picture.dto");
 const picture_service_1 = require("../../services/picture/picture.service");
-let PictureController = class PictureController {
+let PicturesController = class PicturesController {
     constructor(pictureSercice) {
         this.pictureSercice = pictureSercice;
     }
@@ -30,10 +30,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [picture_dto_1.PictureDto]),
     __metadata("design:returntype", Promise)
-], PictureController.prototype, "addPicture", null);
-PictureController = __decorate([
+], PicturesController.prototype, "addPicture", null);
+PicturesController = __decorate([
     (0, common_1.Controller)('picture'),
     __metadata("design:paramtypes", [picture_service_1.PictureService])
-], PictureController);
-exports.PictureController = PictureController;
+], PicturesController);
+exports.PicturesController = PicturesController;
 //# sourceMappingURL=pictures.controller.js.map

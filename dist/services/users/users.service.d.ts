@@ -11,9 +11,9 @@ export declare class UsersService {
     addPicture(addPic: addPictureDto): Promise<import("../../data/picture/picture.model").Picture & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    removePicture(removePic: addPictureDto): Promise<void | (User & import("mongoose").Document<any, any, any> & {
+    removePicture(removePic: addPictureDto): Promise<User & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
-    })>;
+    }>;
     getPictures(userId: string): Promise<import("../../data/picture/picture.model").Picture[]>;
     getUsers(): Promise<User[]>;
 }

@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const user_repository_1 = require("../../data/user/user.repository");
+const user_repository_1 = require("src/data/user/user.repository");
 const uuid_1 = require("uuid");
 const picture_repository_1 = require("../../data/picture/picture.repository");
 let UsersService = class UsersService {
@@ -35,7 +35,7 @@ let UsersService = class UsersService {
         return this.usersRepository.addPicture(addPic);
     }
     async removePicture(removePic) {
-        return this.pictureRepository.deletePicture(removePic.pictureId);
+        this.pictureRepository.deletePicture(removePic.pictureId);
         return this.usersRepository.removePicture(removePic);
     }
     async getPictures(userId) {
