@@ -16,11 +16,11 @@ class PictureResponseDTO {
 __decorate([
     (0, classes_1.AutoMap)(),
     __metadata("design:type", String)
-], PictureResponseDTO.prototype, "identifier", void 0);
+], PictureResponseDTO.prototype, "id", void 0);
 __decorate([
     (0, classes_1.AutoMap)(),
     __metadata("design:type", String)
-], PictureResponseDTO.prototype, "id", void 0);
+], PictureResponseDTO.prototype, "identifier", void 0);
 __decorate([
     (0, classes_1.AutoMap)(),
     __metadata("design:type", Date)

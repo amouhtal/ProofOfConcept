@@ -1,5 +1,5 @@
 export declare class PictureResponseDTO {
-    identifier: string;
     id: string;
+    identifier: string;
     date: Date;
 }

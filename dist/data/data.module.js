@@ -9,15 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const picture_repository_1 = require("./picture/picture.repository");
-const picture_model_1 = require("./picture/picture.model");
+const picture_repository_1 = require("./pictures/picture.repository");
+const picture_pojo_model_1 = require("./models/pictures/picture.pojo.model");
 let DataModule = class DataModule {
 };
 DataModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([, { name: picture_model_1.Picture.name, schema: picture_model_1.PictureSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([
+                ,
+                { name: picture_pojo_model_1.PicturePOJO.name, schema: picture_pojo_model_1.PictureSchema },
+            ]),
+        ],
         providers: [picture_repository_1.PictureRepository],
-        exports: [picture_repository_1.PictureRepository]
+        exports: [picture_repository_1.PictureRepository],
     })
 ], DataModule);
 exports.DataModule = DataModule;

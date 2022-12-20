@@ -16,6 +16,10 @@ class PictureDTO {
 __decorate([
     (0, classes_1.AutoMap)(),
     __metadata("design:type", String)
+], PictureDTO.prototype, "pictureFileUrl", void 0);
+__decorate([
+    (0, classes_1.AutoMap)(),
+    __metadata("design:type", String)
 ], PictureDTO.prototype, "identifier", void 0);
 __decorate([
     (0, classes_1.AutoMap)(),

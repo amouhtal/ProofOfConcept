@@ -15,7 +15,7 @@ import { PicturesUploadHelper } from "@Controllers/pictures/helpers/pictures.upl
 import { PicturesMapper } from "@Controllers/mappers/pictures/pictures.mapper";
 import { PictureResponseDTO } from "@Services/dto/pictures/picture.response.dto";
 
-@Controller("picture")
+@Controller("pictures")
 export class PicturesController {
     constructor(
         private readonly pictureSercice: PictureService,
@@ -41,10 +41,15 @@ export class PicturesController {
         @Body() pictureWO: PictureWO,
         @UploadedFile() file: Express.Multer.File
     ): Promise<PictureWO> {
-        const pictureFileUrl = '/local-storage/pictures/' + file.filename; 
-        const pictureResponseDTO: PictureResponseDTO =
+
+        const pictureFileUrl = "/local-storage/pictures/" + file.filename;
+
+        const pictureResponseDTO : PictureResponseDTO =
             this.pictureSercice.addPicture(
-                this.picturesMapper.mapPictureWOToPictureDTO(pictureWO, pictureFileUrl)
+                this.picturesMapper.mapPictureWOToPictureDTO(
+                    pictureWO,
+                    pictureFileUrl
+                )
             );
 
         return this.picturesMapper.mapPictureResponseDTOToPictureWO(

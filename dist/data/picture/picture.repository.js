@@ -16,24 +16,19 @@ exports.PictureRepository = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const picture_model_1 = require("./picture.model");
+const picture_pojo_model_1 = require("./picture.pojo.model");
 let PictureRepository = class PictureRepository {
     constructor(pictureModel) {
         this.pictureModel = pictureModel;
     }
-    async create(picture) {
-        const newPicture = new this.pictureModel(picture);
+    async create(picturePOJO) {
+        const newPicture = new this.pictureModel(picturePOJO);
         return newPicture.save();
-    }
-    async deletePicture(pictureId) {
-        console.log(pictureId);
-        const filter = { _id: pictureId };
-        const deleted = await this.pictureModel.deleteOne(filter);
     }
 };
 PictureRepository = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(picture_model_1.Picture.name)),
+    __param(0, (0, mongoose_1.InjectModel)(picture_pojo_model_1.PicturePOJO.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], PictureRepository);
 exports.PictureRepository = PictureRepository;

@@ -29,7 +29,7 @@ let PicturesController = class PicturesController {
         return "hello world";
     }
     async addPicture(pictureWO, file) {
-        const pictureFileUrl = '/local-storage/pictures/' + file.filename;
+        const pictureFileUrl = "/local-storage/pictures/" + file.filename;
         const pictureResponseDTO = this.pictureSercice.addPicture(this.picturesMapper.mapPictureWOToPictureDTO(pictureWO, pictureFileUrl));
         return this.picturesMapper.mapPictureResponseDTOToPictureWO(pictureResponseDTO);
     }
@@ -56,7 +56,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PicturesController.prototype, "addPicture", null);
 PicturesController = __decorate([
-    (0, common_1.Controller)("picture"),
+    (0, common_1.Controller)("pictures"),
     __metadata("design:paramtypes", [pictures_service_1.PictureService,
         pictures_mapper_1.PicturesMapper])
 ], PicturesController);

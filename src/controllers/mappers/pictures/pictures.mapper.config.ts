@@ -23,7 +23,6 @@ export class PictureMapperProfile extends AutomapperProfile {
         return (mapper) => {
             createMap(mapper, PictureWO, PictureDTO);
             createMap(mapper, PictureResponseDTO, PictureWO);
-            
         };
     }
 }

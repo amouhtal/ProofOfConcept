@@ -10,20 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PictureService = void 0;
+const pictures_repository_1 = require("../../data/pictures/pictures.repository");
 const common_1 = require("@nestjs/common");
+const pictures_mapper_1 = require("../mappers/pictures/pictures.mapper");
 let PictureService = class PictureService {
-    constructor() {
+    constructor(pictureRepository, pictureServiceMapper) {
+        this.pictureRepository = pictureRepository;
+        this.pictureServiceMapper = pictureServiceMapper;
     }
     addPicture(pictureDTO) {
-        console.log(pictureDTO);
-        return { identifier: pictureDTO.identifier, date: pictureDTO.date, id: '10' };
+        let pictureResponseDTO;
+        pictureDTO.date = new Date();
+        this.pictureRepository.create(this.pictureServiceMapper.mapPictureDTOToPicturePOJO(pictureDTO))
+            .then((picturePOJO) => {
+            console.log(picturePOJO);
+            pictureResponseDTO = this.pictureServiceMapper.mapPicturePOJOToPictureResponseDTO(picturePOJO);
+        });
+        return pictureResponseDTO;
     }
     async deletePicture(pictureId) {
     }
 };
 PictureService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [pictures_repository_1.PictureRepository,
+        pictures_mapper_1.PictureServiceMapper])
 ], PictureService);
 exports.PictureService = PictureService;
 //# sourceMappingURL=pictures.service.js.map

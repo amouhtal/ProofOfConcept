@@ -9,21 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PictureSchema = exports.Picture = void 0;
+exports.PictureSchema = exports.PicturePOJO = void 0;
+const classes_1 = require("@automapper/classes");
 const mongoose_1 = require("@nestjs/mongoose");
-let Picture = class Picture {
+let PicturePOJO = class PicturePOJO {
 };
 __decorate([
+    (0, classes_1.AutoMap)(),
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Picture.prototype, "picId", void 0);
+], PicturePOJO.prototype, "picId", void 0);
 __decorate([
+    (0, classes_1.AutoMap)(),
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Picture.prototype, "path", void 0);
-Picture = __decorate([
+], PicturePOJO.prototype, "path", void 0);
+PicturePOJO = __decorate([
     (0, mongoose_1.Schema)()
-], Picture);
-exports.Picture = Picture;
-exports.PictureSchema = mongoose_1.SchemaFactory.createForClass(Picture);
+], PicturePOJO);
+exports.PicturePOJO = PicturePOJO;
+exports.PictureSchema = mongoose_1.SchemaFactory.createForClass(PicturePOJO);
 //# sourceMappingURL=picture.model.js.map

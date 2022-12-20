@@ -14,16 +14,18 @@ const mongoose_1 = require("@nestjs/mongoose");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const index_1 = require("./controllers/index");
+const data_1 = require("./data");
 const services_1 = require("./services");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            mongoose_1.MongooseModule.forRoot("mongodb+srv://root:root@cluster0.s3xtgdt.mongodb.net/?retryWrites=true&w=majority"),
             nestjs_1.AutomapperModule.forRoot({ strategyInitializer: (0, classes_1.classes)() }),
             ...index_1.controllerModules,
             ...services_1.servicesModules,
-            mongoose_1.MongooseModule.forRoot("mongodb+srv://root:root@cluster0.s3xtgdt.mongodb.net/?retryWrites=true&w=majority"),
+            ...data_1.dataModules,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
